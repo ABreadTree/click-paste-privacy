@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Privacy Policy for Click Paste, an on-device clipboard keyboard for iPhone and iPad.">
+  <title>Privacy Policy — Click Paste</title>
+  <link rel="canonical" href="https://abreadtree.github.io/click-paste-privacy/">
+  <link rel="alternate" hreflang="en" href="https://abreadtree.github.io/click-paste-privacy/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://abreadtree.github.io/click-paste-privacy/zh-cn/">
+  <link rel="icon" href="./assets/click-paste-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to privacy policy</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="./"><img src="./assets/click-paste-icon.png" alt="" width="36" height="36">Click Paste</a>
+    <nav class="language-nav" aria-label="Language"><a href="./" lang="en" aria-current="page">English</a><a href="./zh-cn/" lang="zh-Hans">简体中文</a></nav>
+  </div></header>
+  <main id="main" class="page-shell"><article>
+    <header class="hero"><p class="eyebrow">Click Paste</p><h1>Privacy Policy</h1><p class="promise">Your clipboard stays on your device. No analytics, no uploads, and no advertising.</p><p class="updated">Last updated: July 21, 2026</p></header>
+    <section class="policy-section" aria-labelledby="overview"><h2 id="overview">Privacy at a glance</h2><div class="privacy-summary"><strong>Local by design.</strong> Click Paste is an iOS app and custom Keyboard Extension for reusing copied text and images. It does not require an account and is not a background clipboard monitor or cloud clipboard service.</div></section>
+    <section class="policy-section" aria-labelledby="access"><h2 id="access">Consent and clipboard access</h2><p>Clipboard history is off until you give explicit consent in the Click Paste app. Automatic capture requires consent, Auto-cache, Full Access, and a visible, active keyboard.</p><p>The keyboard does not read or poll the clipboard while hidden, inactive, or in the background. URL-like strings are treated as ordinary text.</p></section>
+    <section class="policy-section" aria-labelledby="storage"><h2 id="storage">Local storage and retention</h2><p>Clipboard content stays in the app's on-device App Group container. SQLite stores metadata, while local files store images, thumbnails, and large content bodies.</p><ul><li>Up to 50 recent active items by default.</li><li>Unpinned items expire after 7 days; pinned items do not expire under the default rule.</li><li>Images share a 200 MB local storage budget.</li></ul></section>
+    <section class="policy-section" aria-labelledby="full-access"><h2 id="full-access">Why Full Access is requested</h2><p>Full Access lets the keyboard read the pasteboard while it is visible and active and share the local cache with the containing app. Without Full Access, the keyboard remains a setup/status panel and clipboard history is unavailable.</p></section>
+    <section class="policy-section" aria-labelledby="controls"><h2 id="controls">Your controls</h2><p>You can revoke consent at any time. Close preview does not delete content; selected-item deletion removes that cached item.</p><p>Archive local cache hides active entries by marking them archived. Confirmed Clear local cache permanently deletes active and archived metadata and blob files from the device.</p></section>
+    <section class="policy-section" aria-labelledby="collection"><h2 id="collection">Collection, sharing, and tracking</h2><p>Click Paste does not upload clipboard text, URL-like strings, images, previews, typed keys, input context, or settings. It contains no ads or third-party analytics SDKs and declares no tracking or collected data.</p><p>The only declared required-reason API is App Group UserDefaults with reason 1C8F.1.</p></section>
+    <section class="policy-section" aria-labelledby="images"><h2 id="images">Image handling</h2><p>Image insertion is best effort. Some host apps do not accept images from custom keyboards; Click Paste provides a copy fallback and does not promise universal image insertion.</p></section>
+    <section class="policy-section" aria-labelledby="website"><h2 id="website">This website</h2><p>This page adds no analytics, advertising, cookie-setting code, forms, remote fonts, or client-side scripts. GitHub Pages hosts the site and may log IP addresses and request metadata for security and service operation under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</p></section>
+    <section class="policy-section" aria-labelledby="changes"><h2 id="changes">Changes to this policy</h2><p>Material changes to Click Paste data behavior will be reflected here and in applicable App Store privacy disclosures before release. The date at the top identifies the current revision.</p></section>
+    <section class="policy-section" aria-labelledby="contact"><h2 id="contact">Contact</h2><p>For a privacy question, open an issue in the public privacy repository. Do not include clipboard contents, typed text, images, or other sensitive information.</p><a class="contact-link" href="https://github.com/ABreadTree/click-paste-privacy/issues/new?template=privacy-question.yml">Open a privacy issue</a></section>
+  </article></main>
+  <footer class="site-footer"><div class="footer-inner"><p>© 2026 Click Paste</p><p><a href="./zh-cn/" lang="zh-Hans">简体中文</a> · <a href="https://github.com/ABreadTree/click-paste-privacy/issues">Privacy issues</a></p></div></footer>
+</body>
+</html>
