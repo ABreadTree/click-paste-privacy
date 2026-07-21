@@ -93,12 +93,43 @@ class PrivacySiteTests(unittest.TestCase):
             self.assertIn(value, chinese.text)
         for value in ("requires a GitHub account", "governed by GitHub's policies"):
             self.assertIn(value, english.text)
-        for value in ("需要 GitHub 账户", "受 GitHub 政策约束"):
+        for value in ("需要登录 GitHub", "受 GitHub 的相关政策约束"):
             self.assertIn(value, chinese.text)
         for parser in (english, chinese):
             hrefs = [attrs.get("href", "") for tag, attrs in parser.start_tags if tag == "a"]
             self.assertTrue(any("/issues/new" in href for href in hrefs))
             self.assertTrue(any("github-general-privacy-statement" in href for href in hrefs))
+
+    def test_simplified_chinese_copy_is_natural_and_omits_image_actions(self):
+        chinese = parse(ROOT / "zh-cn" / "index.html")
+        source = (ROOT / "zh-cn" / "index.html").read_text(encoding="utf-8")
+        self.assertIn(
+            "Click Paste 隐私政策，说明应用如何在 iPhone 和 iPad 本地处理剪贴板内容。",
+            source,
+        )
+        for value in (
+            "跳至正文",
+            "所有处理均在本机完成。",
+            "网址也会作为普通文本保存和输入。",
+            "需要登录 GitHub",
+            "受 GitHub 的相关政策约束",
+        ):
+            self.assertIn(value, chinese.text)
+        for value in (
+            "隐私源于本地设计",
+            "类似网址的字符串",
+            "处于活跃状态",
+            "图片插入属于尽力而为",
+            "唯一声明的必需原因 API",
+            "复制图片",
+            "粘贴图片",
+            "插入图片",
+            "图片处理",
+        ):
+            self.assertNotIn(value, chinese.text)
+        self.assertFalse(
+            any(attrs.get("id") == "images" for _, attrs in chinese.start_tags)
+        )
 
     def test_language_routes_are_reciprocal(self):
         english_hrefs = [attrs.get("href") for tag, attrs in parse(ROOT / "index.html").start_tags if tag == "a"]
