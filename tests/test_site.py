@@ -91,6 +91,10 @@ class PrivacySiteTests(unittest.TestCase):
             self.assertIn(value, english.text)
         for value in ("50", "7 天", "200 MB", "1C8F.1", "GitHub Pages"):
             self.assertIn(value, chinese.text)
+        for value in ("requires a GitHub account", "governed by GitHub's policies"):
+            self.assertIn(value, english.text)
+        for value in ("需要 GitHub 账户", "受 GitHub 政策约束"):
+            self.assertIn(value, chinese.text)
         for parser in (english, chinese):
             hrefs = [attrs.get("href", "") for tag, attrs in parser.start_tags if tag == "a"]
             self.assertTrue(any("/issues/new" in href for href in hrefs))
