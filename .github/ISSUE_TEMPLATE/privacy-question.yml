@@ -1,0 +1,31 @@
+name: Privacy question
+description: Ask about the Click Paste privacy policy or on-device data handling.
+title: "[Privacy] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contacting Click Paste. Do not include clipboard contents, typed text, images, input context, account credentials, or other sensitive information.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Preferred language
+      options:
+        - English
+        - 简体中文
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Privacy question
+      description: Describe the policy or behavior you want clarified without including private content.
+    validations:
+      required: true
+  - type: checkboxes
+    id: sensitive-content
+    attributes:
+      label: Sensitive-content check
+      options:
+        - label: I have not included clipboard contents, typed text, images, input context, credentials, or other sensitive information.
+          required: true

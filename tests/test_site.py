@@ -124,6 +124,39 @@ class PrivacySiteTests(unittest.TestCase):
         self.assertIn("/click-paste-privacy/", hrefs)
         self.assertIn("/click-paste-privacy/zh-cn/", hrefs)
 
+    def test_pages_workflow_is_minimal_and_main_only(self):
+        workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+        for contract in (
+            "branches: [main]",
+            "pages: write",
+            "id-token: write",
+            "actions/configure-pages@v5",
+            "actions/upload-pages-artifact@v4",
+            "actions/deploy-pages@v4",
+            "environment:",
+            "github-pages",
+        ):
+            self.assertIn(contract, workflow)
+        self.assertNotIn("pull_request:", workflow)
+
+    def test_privacy_issue_form_warns_against_sensitive_content(self):
+        issue_form = (
+            ROOT / ".github" / "ISSUE_TEMPLATE" / "privacy-question.yml"
+        ).read_text(encoding="utf-8")
+        for contract in (
+            "Privacy question",
+            "Do not include clipboard contents",
+            "validations:",
+            "required: true",
+        ):
+            self.assertIn(contract, issue_form)
+
+    def test_repository_has_nojekyll_and_documents_verification(self):
+        self.assertTrue((ROOT / ".nojekyll").is_file())
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("python3 -m unittest discover -s tests -v", readme)
+        self.assertIn("https://abreadtree.github.io/click-paste-privacy/", readme)
+
 
 if __name__ == "__main__":
     unittest.main()
