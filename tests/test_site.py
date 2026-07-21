@@ -138,6 +138,7 @@ class PrivacySiteTests(unittest.TestCase):
         ):
             self.assertIn(contract, workflow)
         self.assertNotIn("pull_request:", workflow)
+        self.assertNotIn("workflow_dispatch:", workflow)
 
     def test_privacy_issue_form_warns_against_sensitive_content(self):
         issue_form = (
