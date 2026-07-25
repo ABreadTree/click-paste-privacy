@@ -8,6 +8,10 @@ POLICIES = (
     (ROOT / "index.html", "en", "https://abreadtree.github.io/click-paste-privacy/"),
     (ROOT / "zh-cn" / "index.html", "zh-CN", "https://abreadtree.github.io/click-paste-privacy/zh-cn/"),
 )
+SUPPORT_PAGES = (
+    (ROOT / "support" / "index.html", "en"),
+    (ROOT / "zh-cn" / "support" / "index.html", "zh-Hans"),
+)
 
 
 class DocumentParser(HTMLParser):
@@ -40,6 +44,8 @@ class PrivacySiteTests(unittest.TestCase):
         for relative in (
             "index.html",
             "zh-cn/index.html",
+            "support/index.html",
+            "zh-cn/support/index.html",
             "404.html",
             "styles.css",
             "assets/click-paste-icon.png",
@@ -130,6 +136,20 @@ class PrivacySiteTests(unittest.TestCase):
         self.assertFalse(
             any(attrs.get("id") == "images" for _, attrs in chinese.start_tags)
         )
+
+    def test_public_pages_omit_image_insertion_copy(self):
+        for path, _, *_ in POLICIES + SUPPORT_PAGES:
+            source = path.read_text(encoding="utf-8")
+            self.assertIsNone(
+                re.search(
+                    r"image[ -]?(?:paste|insert(?:ion)?)|"
+                    r"paste (?:an )?image|insert (?:an )?image|"
+                    r"图片(?:粘贴|插入)|(?:粘贴|插入)图片",
+                    source,
+                    re.IGNORECASE,
+                ),
+                path,
+            )
 
     def test_language_routes_are_reciprocal(self):
         english_hrefs = [attrs.get("href") for tag, attrs in parse(ROOT / "index.html").start_tags if tag == "a"]
