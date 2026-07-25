@@ -186,6 +186,7 @@ class PrivacySiteTests(unittest.TestCase):
             "actions/deploy-pages@v4",
             "environment:",
             "github-pages",
+            "cp -R assets support zh-cn _site/",
         ):
             self.assertIn(contract, workflow)
         self.assertNotIn("pull_request:", workflow)
